@@ -1,0 +1,27 @@
+pip install pandas
+
+import streamlit as st
+
+
+st.title("George's Apps")
+st.subheader("Welcome to Iris Data Explorer")
+
+def load_data():
+    df=pd.read_csv("STREAMLIT ASSIGNMENT/Iris Data.csv")
+    return df
+
+
+data=load_data
+
+#Data Displaying
+if st.checkbox("Show Raw Data"):
+   st.subheader("Raw Data")
+   st.dataframe(data)
+
+
+
+#Average
+if st.checkbox("Show the average sepal length for each species"):
+    st.subheader("Average Sepal Length for Each Species")
+    avg_sepal_length = data.groupby("species")["sepal_length"].mean()
+    st.write(avg_sepal_length)
